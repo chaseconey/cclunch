@@ -1,0 +1,40 @@
+body{
+	text-align: center;
+
+}
+#content{
+	width: 450px;
+	margin: 0 auto;	
+}
+#results table{
+	text-align: center;
+	margin: 0 auto;	
+	width: 400px;
+}
+#addDailyChoice{
+	text-align: center;
+}
+
+/* For modern browsers */
+.cf:before,
+.cf:after {
+    content:"";
+    display:table;
+}
+
+.cf:after {
+    clear:both;
+}
+
+/* For IE 6/7 (trigger hasLayout) */
+.cf {
+    zoom:1;
+}
+
+.error{
+	font-weight: bold;
+	color: red;
+}
+.banner{
+	width: 200px;
+}
