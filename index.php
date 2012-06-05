@@ -37,80 +37,97 @@
 	}
 
 ?>
-<html>
-	<head>
-		<title>Lunch for the Bunch</title>
-		<link href="style.css" rel="stylesheet" type="text/css">
-	</head>
-	<body>
-		<div id="content">
-			<nav>
-					<a href="index.php">Home</a>
-					<a href="add_place.php">Add a Place</a>
-			</nav>
-			<div id="header">
-				<img class="banner" src="img/bacon.png" />
-				<h1>Food</h1>
-			</div>
-			<div id="addDailyChoice">
-				<h2>Add a Daily Choice</h2>
-				<form action="index.php" method="post">
-					<select name="choice_id">
-						<?php
-							$sql = "SELECT * FROM choices";
-							$result = mysql_query($sql);
+<!DOCTYPE html>
+<html><head>
+<title>Lunch for the Bunch</title>
+<meta charset="UTF-8">
+<meta name="description" content="" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script type="text/javascript" src="js/prettify.js"></script>                                   <!-- PRETTIFY -->
+<script type="text/javascript" src="js/kickstart.js"></script>                                  <!-- KICKSTART -->
+<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />                  <!-- KICKSTART -->
+<link rel="stylesheet" type="text/css" href="style.css" media="all" />                          <!-- CUSTOM STYLES -->
+</head><body><a id="top-of-page"></a><div id="wrap" class="clearfix">
+<!-- ===================================== END HEADER ===================================== -->
 
-							if (!$result) {
-							    echo "<p class='error'>Could not successfully run query ($sql) from DB: " . mysql_error();
-							    exit;
-							}
-							if (mysql_num_rows($result) == 0) {
-							    echo "<p class='error'>No rows found, nothing to print so am exiting";
-							    exit;
-							}
-							while ($row = mysql_fetch_assoc($result)) {
-								echo "<option type='text' value='" . $row['id'] . "'>" . $row['choice'] . "</option>";
-							}
-						?>
-					</select><br />
-					<input type="submit" value="Vote" />
-				</form>
-			</div>
-			<div class="cf"></div>
-			<div id="results">
-				<table id="result_list">
-					<thead>
+
+	<!-- 
+	
+		ADD YOU HTML ELEMENTS HERE
+		
+		Example: 2 Columns
+	 -->
+	 <!-- Menu Horizontal -->
+	<ul class="menu">
+		<li><a href="/index.php">Home</a></li>
+		<li><a href="/add_place.php">Add a Choice</a></li>
+	</ul>
+	 
+<div class="col_12 center">
+	<div id="header">
+		<img class="center banner" src="img/bacon.png" />
+		<h1>Lunch Picker</h1>
+	</div>
+	<div id="col_12">
+		<form action="index.php" method="post">
+			<select name="choice_id">
+				<?php
+					$sql = "SELECT * FROM choices ORDER BY choice ASC";
+					$result = mysql_query($sql);
+
+					if (!$result) {
+					    echo "<p class='error'>Could not successfully run query ($sql) from DB: " . mysql_error();
+					    exit;
+					}
+					if (mysql_num_rows($result) == 0) {
+					    echo "<p class='error'>No rows found, nothing to print so am exiting";
+					    exit;
+					}
+					while ($row = mysql_fetch_assoc($result)) {
+						echo "<option type='text' value='" . $row['id'] . "'>" . $row['choice'] . "</option>";
+					}
+				?>
+			</select><br />
+			<button type="submit">Vote</button>
+		</form>
+	</div>
+	<hr />
+	<div id="results">
+		<table id="result_list" class="striped tight sortable">
+			<thead>
+				<tr>
+					<th>Place</th><th>Location</th><th>Votes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<?php
+					$sql = "SELECT choice, location, choice_date, daily_votes AS votes FROM daily_choices LEFT JOIN choices on daily_choices.choice_id = choices.id WHERE daily_choices.choice_date BETWEEN concat(CURDATE(), ' 00:00:00') AND concat(CURDATE(), ' 23:59:59') GROUP BY daily_choices.choice_id ORDER BY choice;";
+					$result = mysql_query($sql);
+
+					if (!$result) {
+					    echo "<p class='error'>Could not successfully run query ($sql) from DB: " . mysql_error();
+					    exit;
+					}
+					if (mysql_num_rows($result) == 0) {
+					    echo "<p class='error'>No places added yet!";
+					    exit;
+					}
+					while ($row = mysql_fetch_assoc($result)) {
+						$choice = $row['choice'];
+				?>
 						<tr>
-							<th>Place</th><th>Location</th><th>Votes</th>
+							<td><?php echo $choice ?></td>
+							<td><a href="<?php echo urldecode($row['location']); ?>" target="_blank">Map</a></td>
+							<td><?php echo ($row['votes'] > 0) ? $row['votes'] : "0"; ?></td>
 						</tr>
-					</thead>
-					<tbody>
-						<?php
-							$sql = "SELECT choice, location, choice_date, daily_votes AS votes FROM daily_choices LEFT JOIN choices on daily_choices.choice_id = choices.id WHERE daily_choices.choice_date BETWEEN concat(CURDATE(), ' 00:00:00') AND concat(CURDATE(), ' 23:59:59') GROUP BY daily_choices.choice_id ORDER BY choice;";
-							$result = mysql_query($sql);
-
-							if (!$result) {
-							    echo "<p class='error'>Could not successfully run query ($sql) from DB: " . mysql_error();
-							    exit;
-							}
-							if (mysql_num_rows($result) == 0) {
-							    echo "<p class='error'>No places added yet!";
-							    exit;
-							}
-							while ($row = mysql_fetch_assoc($result)) {
-								$choice = $row['choice'];
-						?>
-								<tr>
-									<td><?php echo $choice ?></td>
-									<td><a href="<?php echo urldecode($row['location']); ?>" target="_blank">Map</a></td>
-									<td><?php echo ($row['votes'] > 0) ? $row['votes'] : "0"; ?></td>
-								</tr>
-						<?php 
-							}
-						?>
-					</tbody>
-				</table>
-			</div>
-		</div>
-	</body>
+				<?php 
+					}
+				?>
+			</tbody>
+		</table>
+	</div>
+</div>
+</div>
+</body>
 </html>

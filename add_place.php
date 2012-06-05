@@ -17,26 +17,40 @@
 		}
 	}
 ?>
-<html>
-	<head>
-		<title>Lunch for the Bunch</title>
-		<link href="style.css" rel="stylesheet" type="text/css">
-	</head>
-	<body>
-		<nav>
-			<ul>
-				<a href="index.php">Home</a>
-				<a href="add_place.php">Add a Place</a>
-			</ul>
-		</nav>
-		<h1>Lunch Picker - Add</h1>
-		<div id="addChoice">
-			<h2>Add a Global Choice</h2>
-			<form action="add_place.php" method="post">
-				<input type="text" name="choice[]" placeholder="Lunch Choice" /><br />
-				<input type="text" name="choice[]" placeholder="Google Maps Location" /><br />
-				<input type="submit" value="Enter Lunch Choice" />
-			</form>
-		</div>
-	</body>
+<!DOCTYPE html>
+<html><head>
+<title>Lunch for the Bunch</title>
+<meta charset="UTF-8">
+<meta name="description" content="" />
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+<script type="text/javascript" src="js/prettify.js"></script>                                   <!-- PRETTIFY -->
+<script type="text/javascript" src="js/kickstart.js"></script>                                  <!-- KICKSTART -->
+<link rel="stylesheet" type="text/css" href="css/kickstart.css" media="all" />                  <!-- KICKSTART -->
+<link rel="stylesheet" type="text/css" href="style.css" media="all" />                          <!-- CUSTOM STYLES -->
+</head><body><a id="top-of-page"></a><div id="wrap" class="clearfix">
+<!-- ===================================== END HEADER ===================================== -->
+
+	<ul class="menu center">
+		<li><a href="/index.php">Home</a></li>
+		<li><a href="/add_place.php">Add a Choice</a></li>
+	</ul>
+	 
+<div class="col_12 center">
+	<h1>Lunch Picker - Add</h1>
+	<div class="col_4"></div>
+	<div class="col_4">
+		<h2>Add a Global Choice</h2>
+		<form class="vertical" action="add_place.php" method="post">
+			<label for="text1">Lunch Choice</label>
+			<input id="text1" name="choice[]" type="text" />
+			<label for="text2">Google Maps Location</label>
+			<input id="text2" name="choice[]" type="text" />
+			<button type="submit">Add Choice</button>
+		</form>
+	</div>
+	<div class="col_4"></div>
+</div>
+</div>
+</body>
 </html>
