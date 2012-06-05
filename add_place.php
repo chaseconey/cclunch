@@ -31,16 +31,15 @@
 </head><body><a id="top-of-page"></a><div id="wrap" class="clearfix">
 <!-- ===================================== END HEADER ===================================== -->
 
-	<ul class="menu">
-		<li><a href="/index.php">Home</a></li>
-		<li><a href="/add_place.php">Add a Choice</a></li>
-	</ul>
+<?php 
+	$web_root = $_SERVER['DOCUMENT_ROOT'];
+	require_once("$web_root/includes/navigation.php"); 
+?>
 	 
 <div class="col_12 center">
 	<h1>Lunch Picker - Add</h1>
 	<div class="col_4"></div>
 	<div class="col_4">
-		<h2>Add a Global Choice</h2>
 		<form class="vertical" action="add_place.php" method="post">
 			<label for="text1">Lunch Choice</label>
 			<input id="text1" name="choice[]" type="text" />

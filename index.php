@@ -51,23 +51,13 @@
 <link rel="stylesheet" type="text/css" href="style.css" media="all" />                          <!-- CUSTOM STYLES -->
 </head><body><a id="top-of-page"></a><div id="wrap" class="clearfix">
 <!-- ===================================== END HEADER ===================================== -->
-
-
-	<!-- 
-	
-		ADD YOU HTML ELEMENTS HERE
-		
-		Example: 2 Columns
-	 -->
-	 <!-- Menu Horizontal -->
-	<ul class="menu">
-		<li><a href="/index.php">Home</a></li>
-		<li><a href="/add_place.php">Add a Choice</a></li>
-	</ul>
+<?php 
+	$web_root = $_SERVER['DOCUMENT_ROOT'];
+	require_once("$web_root/includes/navigation.php"); 
+?>
 	 
 <div class="col_12 center">
 	<div id="header">
-		<img class="center banner" src="img/bacon.png" />
 		<h1>Lunch Picker</h1>
 	</div>
 	<div id="col_12">
