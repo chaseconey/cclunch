@@ -42,6 +42,7 @@
 <title>Lunch for the Bunch</title>
 <meta charset="UTF-8">
 <meta name="description" content="" />
+<meta http-equiv="refresh" content="60" />
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 <script type="text/javascript" src="js/prettify.js"></script>                                   <!-- PRETTIFY -->
@@ -94,7 +95,7 @@
 	</div>
 	<hr />
 	<div id="results">
-		<table id="result_list" class="striped tight sortable">
+		<table id="result_list" class="tight sortable">
 			<thead>
 				<tr>
 					<th>Place</th><th>Location</th><th>Votes</th>
