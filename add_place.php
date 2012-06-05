@@ -31,7 +31,7 @@
 </head><body><a id="top-of-page"></a><div id="wrap" class="clearfix">
 <!-- ===================================== END HEADER ===================================== -->
 
-	<ul class="menu center">
+	<ul class="menu">
 		<li><a href="/index.php">Home</a></li>
 		<li><a href="/add_place.php">Add a Choice</a></li>
 	</ul>
@@ -46,7 +46,7 @@
 			<input id="text1" name="choice[]" type="text" />
 			<label for="text2">Google Maps Location</label>
 			<input id="text2" name="choice[]" type="text" />
-			<button type="submit">Add Choice</button>
+			<button type="submit" class="green">Add Choice</button>
 		</form>
 	</div>
 	<div class="col_4"></div>

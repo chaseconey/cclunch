@@ -88,8 +88,8 @@
 						echo "<option type='text' value='" . $row['id'] . "'>" . $row['choice'] . "</option>";
 					}
 				?>
-			</select><br />
-			<button type="submit">Vote</button>
+			</select>
+			<button type="submit" class="small green">Vote</button>
 		</form>
 	</div>
 	<hr />
